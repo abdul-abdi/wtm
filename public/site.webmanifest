@@ -1,0 +1,19 @@
+{
+  "name": "Women Tech Makers Zetech",
+  "short_name": "WTM Zetech",
+  "icons": [
+    {
+      "src": "https://developers.google.com/static/womentechmakers/images/wtm-logo_96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://developers.google.com/static/womentechmakers/images/wtm-logo_128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#00A9E0",
+  "background_color": "#ffffff",
+  "display": "standalone"
+} 

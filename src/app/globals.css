@@ -2,20 +2,279 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    /* WTM Brand Colors */
+    --wtm-blue: #00A9E0;
+    --wtm-teal: #00BFB3;
+    --wtm-green: #4BA87D;
+    --primary: var(--wtm-blue);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: var(--wtm-teal);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--wtm-blue);
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-family: var(--font-outfit), "Google Sans", system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Form Styles */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='url'],
+  input[type='search'],
+  textarea {
+    @apply block w-full rounded-xl border-gray-200 shadow-sm focus:border-[#00A9E0] focus:ring-[#00A9E0]/20 transition-all duration-200;
+  }
+
+  /* Button Styles */
+  button {
+    @apply inline-flex items-center justify-center rounded-xl text-base font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  /* Heading Styles */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-gray-900;
+  }
+
+  /* Link Styles */
+  a {
+    @apply text-[#00A9E0] hover:text-[#0077B5] transition-colors;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-[#00A9E0]/50 rounded-full hover:bg-[#00A9E0]/70 transition-colors;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glass Effect */
+.glass {
+  @apply bg-white/95 backdrop-blur-lg border border-white/20;
+}
+
+/* Gradient Text */
+.gradient-text {
+  @apply bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] text-transparent bg-clip-text;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+/* Image Hover Effect */
+.image-hover {
+  @apply transition-transform duration-500 hover:scale-105;
+}
+
+/* Button Hover Effect */
+.button-hover {
+  @apply transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0;
+}
+
+/* Section Spacing */
+.section-spacing {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+/* Container Width */
+.container-width {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Responsive Typography */
+.h1 {
+  @apply text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight;
+}
+
+.h2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+
+.h3 {
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight;
+}
+
+.body-large {
+  @apply text-lg md:text-xl text-gray-600 leading-relaxed;
+}
+
+.body {
+  @apply text-base sm:text-lg leading-relaxed text-gray-600;
+}
+
+/* Focus Styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-[#00A9E0]/20 focus:ring-offset-2;
+}
+
+/* Timeless Card */
+.timeless-card {
+  @apply bg-white/90 rounded-xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300;
+  transform-style: preserve-3d;
+}
+
+/* WTM Gradient */
+.wtm-gradient {
+  @apply bg-gradient-to-r from-[#00A9E0] via-[#00BFB3] to-[#4BA87D];
+}
+
+/* Subtle Background */
+.subtle-background {
+  @apply bg-gradient-to-b from-[#F8FAFC] via-white to-white;
+}
+
+/* Modern Button */
+.modern-button {
+  @apply px-6 py-3 rounded-xl font-semibold text-white bg-[#00A9E0] hover:bg-[#0098CC] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00A9E0]/50 focus:ring-offset-2;
+}
+
+/* Section Title */
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-gray-900 mb-6;
+}
+
+/* Section Subtitle */
+.section-subtitle {
+  @apply text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed;
+}
+
+/* Hover Card */
+.hover-card {
+  @apply transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+}
+
+/* Gradient Border */
+.gradient-border {
+  @apply border border-transparent bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] bg-clip-border;
+}
+
+/* Glass Card */
+.glass-card {
+  @apply bg-white/95 backdrop-blur-md border border-gray-100/50;
+}
+
+/* Elegant Shadow */
+.elegant-shadow {
+  @apply shadow-[0_4px_20px_-4px_rgba(0,169,224,0.1)];
+}
+
+/* Loading optimization */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Loading States */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+/* Image Loading */
+.image-loading {
+  @apply relative overflow-hidden;
+}
+
+.image-loading::after {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Optimized Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Perspective */
+.perspective {
+  perspective: 1000px;
+}
+
+/* Optimized transforms */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
 }
