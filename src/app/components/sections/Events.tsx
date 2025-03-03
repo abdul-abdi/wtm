@@ -11,7 +11,7 @@ const eventTypes = [
     format: 'In-person',
     frequency: 'Every Thursday',
     duration: '2-3 hours',
-    image: '/images/WhatsApp Image 2025-02-20 at 01.23.35.jpeg',
+    image: '/images/WhatsApp Image 2025-02-27 at 20.51.58.jpeg',
     features: [
       'Technical Workshops',
       'Industry Speaker Sessions',
