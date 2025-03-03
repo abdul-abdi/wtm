@@ -78,15 +78,22 @@ export default function Header() {
     } else {
       // For items without submenus, navigate directly
       navigateToSection(href);
-      setIsMobileMenuOpen(false);
     }
   };
 
   // Helper function to handle navigation to sections
   const navigateToSection = (href: string) => {
-    if (href === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
+    // Close mobile menu and submenus when navigating
+    setIsMobileMenuOpen(false);
+    setActiveSubmenu(null);
+    
+    // Add a small delay to allow the UI to update before scrolling
+    setTimeout(() => {
+      if (href === '/') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      
       const sectionIds = href.split('#').filter(Boolean);
       
       if (sectionIds.length > 0) {
@@ -104,10 +111,10 @@ export default function Header() {
           }
         }
       }
-    }
+    }, 100);
   };
 
-  const handleSubmenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleSubmenuClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     
     // Close menus
@@ -290,7 +297,7 @@ export default function Header() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden overflow-hidden absolute left-0 right-0 top-full px-4 bg-white/95 backdrop-blur-lg shadow-lg"
+              className="md:hidden overflow-hidden absolute left-0 right-0 top-full px-4 bg-white/95 backdrop-blur-lg shadow-lg z-50"
             >
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
@@ -300,20 +307,13 @@ export default function Header() {
               >
                 {navigation.map((item) => (
                   <div key={item.name} className="py-2">
-                    <button
-                      onClick={(e) => {
-                        if (item.submenu) {
-                          // If it has a submenu, just toggle the submenu
-                          setActiveSubmenu(activeSubmenu === item.name ? null : item.name);
-                        } else {
-                          // If no submenu, navigate directly
-                          handleMenuClick(item.name, item.href, e as React.MouseEvent);
-                        }
-                      }}
-                      className="w-full flex items-center justify-between px-4 py-2 text-base font-medium text-gray-600 hover:text-[#00A9E0] rounded-lg"
-                    >
-                      <span>{item.name}</span>
-                      {item.submenu && (
+                    {item.submenu ? (
+                      // For items with submenu, use a button to toggle
+                      <button
+                        onClick={() => setActiveSubmenu(activeSubmenu === item.name ? null : item.name)}
+                        className="w-full flex items-center justify-between px-4 py-2 text-base font-medium text-gray-600 hover:text-[#00A9E0] rounded-lg"
+                      >
+                        <span>{item.name}</span>
                         <svg
                           className={`w-4 h-4 transition-transform duration-200 ${
                             activeSubmenu === item.name ? 'rotate-180' : ''
@@ -329,8 +329,16 @@ export default function Header() {
                             d="M19 9l-7 7-7-7"
                           />
                         </svg>
-                      )}
-                    </button>
+                      </button>
+                    ) : (
+                      // For items without submenu, use a direct navigation button
+                      <button
+                        onClick={() => navigateToSection(item.href)}
+                        className="w-full text-left px-4 py-2 text-base font-medium text-gray-600 hover:text-[#00A9E0] rounded-lg"
+                      >
+                        {item.name}
+                      </button>
+                    )}
                     <AnimatePresence>
                       {item.submenu && activeSubmenu === item.name && (
                         <motion.div
@@ -340,14 +348,13 @@ export default function Header() {
                           className="pl-4 mt-1 space-y-1"
                         >
                           {item.submenu.map((subItem) => (
-                            <Link
+                            <button
                               key={subItem.name}
-                              href={subItem.href}
-                              onClick={(e) => handleSubmenuClick(e, subItem.href)}
-                              className="block px-4 py-2 text-sm text-gray-500 hover:text-[#00A9E0] rounded-lg"
+                              onClick={() => navigateToSection(subItem.href)}
+                              className="block w-full text-left px-4 py-2 text-sm text-gray-500 hover:text-[#00A9E0] rounded-lg"
                             >
                               {subItem.name}
-                            </Link>
+                            </button>
                           ))}
                         </motion.div>
                       )}
@@ -355,15 +362,12 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="pt-2 px-4">
-                  <a
-                    href={WHATSAPP_GROUP_LINK}
+                  <button
                     onClick={handleJoinClick}
                     className="block w-full px-6 py-3 text-center font-semibold text-white bg-[#00A9E0] hover:bg-[#0098CC] rounded-xl transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
                     Join Now
-                  </a>
+                  </button>
                 </div>
               </motion.div>
             </motion.div>
