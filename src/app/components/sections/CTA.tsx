@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
 
 export default function CTA() {
   return (
@@ -23,8 +25,10 @@ export default function CTA() {
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Join our community of women in tech and take the first step towards your future in technology.
               </p>
-              <Link
-                href="#join"
+              <a
+                href={WHATSAPP_GROUP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 rounded-xl text-white bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
               >
                 Join Our Community
@@ -39,7 +43,7 @@ export default function CTA() {
                 >
                   <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         </motion.div>

@@ -21,6 +21,9 @@ const itemVariants = {
   },
 };
 
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,21 +39,22 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
+      // Instead of submitting the form, redirect to WhatsApp
+      window.open(WHATSAPP_GROUP_LINK, '_blank');
+      
+      // Reset form
       setFormData({
         name: '',
         email: '',
         subject: '',
         message: '',
       });
+      setSubmitStatus('success');
     } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 3000);
     }
   };
 
@@ -198,11 +202,11 @@ export default function Contact() {
                       ></path>
                     </svg>
                   ) : null}
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Connecting...' : 'Join WhatsApp Group'}
                 </button>
                 {submitStatus === 'success' && (
                   <p className="mt-2 text-sm text-green-600">
-                    Message sent successfully! We&apos;ll get back to you soon.
+                    Redirecting to WhatsApp group...
                   </p>
                 )}
                 {submitStatus === 'error' && (

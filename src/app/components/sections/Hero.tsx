@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaReact, FaPython, FaJava, FaDatabase, FaCloud, FaCode, FaTwitter, FaMicrosoft } from 'react-icons/fa';
@@ -39,6 +38,9 @@ const companyIcons = [
   { Icon: SiUber, color: '#000000', size: 40, opacity: 0.08 },
   { Icon: SiAirbnb, color: '#FF5A5F', size: 46, opacity: 0.08 },
 ];
+
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
 
 export default function Hero() {
   const [dimensions, setDimensions] = useState({ width: 1000, height: 800 });
@@ -216,8 +218,10 @@ export default function Hero() {
                 transition={{ delay: 0.6, duration: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
-                <Link
-                  href="#join"
+                <a
+                  href={WHATSAPP_GROUP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 rounded-xl font-semibold text-white bg-[#00A9E0] hover:bg-[#0098CC] transition-colors shadow-lg shadow-[#00A9E0]/20 flex items-center justify-center"
                 >
                   <span>Join Our Chapter</span>
@@ -234,9 +238,11 @@ export default function Hero() {
                       d="M13 7l5 5m0 0l-5 5m5-5H6"
                     />
                   </svg>
-                </Link>
-                <Link
-                  href="#about"
+                </a>
+                <a
+                  href={WHATSAPP_GROUP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-4 rounded-xl font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 transition-colors shadow-sm flex items-center justify-center"
                 >
                   Learn More
@@ -253,7 +259,7 @@ export default function Hero() {
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
 

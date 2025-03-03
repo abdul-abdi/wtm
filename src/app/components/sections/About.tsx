@@ -52,25 +52,13 @@ const impactNumbers = [
 const teamCategories = [
   {
     title: 'Our Team',
-    description: 'Meet the passionate students driving our mission forward',
+    description: 'Meet the passionate student driving our mission forward',
     members: [
       {
-        name: 'Sarah Kinuthia',
-        title: 'Chapter Lead',
-        image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80',
-        bio: 'Computer Science student passionate about empowering women in tech.',
-      },
-      {
-        name: 'Jane Muthoni',
-        title: 'Technical Lead',
-        image: 'https://images.unsplash.com/photo-1573164574511-73c773193279?auto=format&fit=crop&q=80',
-        bio: 'Software Engineering student focused on web development and mentorship.',
-      },
-      {
-        name: 'Grace Wanjiku',
-        title: 'Community Lead',
-        image: 'https://images.unsplash.com/photo-1573164713619-22f9c11c8110?auto=format&fit=crop&q=80',
-        bio: 'Information Technology student dedicated to building an inclusive tech community.',
+        name: 'Prudence Kendi',
+        title: 'WTM Zetech Representative',
+        image: '/images/WhatsApp Image 2025-02-20 at 01.23.35.jpeg',
+        bio: 'Dedicated to empowering women in technology through education, mentorship, and community building at Zetech University.',
       }
     ]
   }
@@ -93,6 +81,9 @@ const itemVariants = {
     opacity: 1,
   },
 };
+
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
 
 export default function About() {
   return (
@@ -235,10 +226,10 @@ export default function About() {
         >
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 gradient-text">Our Team</h2>
           <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
-            Meet the passionate students driving our mission to empower women in technology
+            Meet the passionate student driving our mission to empower women in technology
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex justify-center">
             {teamCategories[0].members.map((member) => (
               <motion.div
                 key={member.name}
@@ -246,16 +237,16 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="group"
+                className="group max-w-md"
               >
-                <div className="relative glass rounded-xl p-6 border border-white/20">
-                  <div className="relative w-48 h-48 mx-auto mb-6 rounded-xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 shadow-xl group-hover:shadow-2xl">
+                <div className="relative glass rounded-xl p-8 border border-white/20">
+                  <div className="relative w-64 h-64 mx-auto mb-8 rounded-xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 shadow-xl group-hover:shadow-2xl">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 192px"
+                      sizes="(max-width: 768px) 100vw, 256px"
                       quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -267,11 +258,11 @@ export default function About() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-center"
                   >
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
                       {member.name}
                     </h3>
-                    <p className="text-[#00A9E0] font-semibold mb-4">{member.title}</p>
-                    <p className="text-gray-600 leading-relaxed">{member.bio}</p>
+                    <p className="text-[#00A9E0] text-xl font-semibold mb-5">{member.title}</p>
+                    <p className="text-gray-600 text-lg leading-relaxed">{member.bio}</p>
                   </motion.div>
                 </div>
               </motion.div>
@@ -290,7 +281,9 @@ export default function About() {
           <div className="relative inline-block group">
             <div className="absolute inset-0 bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] rounded-xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
             <a
-              href="#join"
+              href={WHATSAPP_GROUP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative inline-flex items-center px-8 py-4 rounded-xl text-white bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
             >
               Join Our Community

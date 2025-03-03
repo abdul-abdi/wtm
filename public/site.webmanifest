@@ -3,14 +3,14 @@
   "short_name": "WTM Zetech",
   "icons": [
     {
-      "src": "https://developers.google.com/static/womentechmakers/images/wtm-logo_96.png",
+      "src": "/images/WhatsApp Image 2025-02-27 at 20.51.58.jpeg",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/jpeg"
     },
     {
-      "src": "https://developers.google.com/static/womentechmakers/images/wtm-logo_128.png",
+      "src": "/images/WhatsApp Image 2025-02-27 at 20.51.58.jpeg",
       "sizes": "128x128",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ],
   "theme_color": "#00A9E0",

@@ -6,12 +6,12 @@ import Image from 'next/image';
 const eventTypes = [
   {
     id: 'biweekly',
-    title: 'Bi-Weekly Tech Meetups',
+    title: 'Weekly Tech Meetups',
     description: 'Regular gatherings featuring hands-on workshops, tech talks, and networking opportunities for our community members.',
-    format: 'Hybrid (In-person & Virtual)',
-    frequency: 'Every Two Weeks',
+    format: 'In-person',
+    frequency: 'Every Thursday',
     duration: '2-3 hours',
-    image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80',
+    image: '/images/WhatsApp Image 2025-02-20 at 01.23.35.jpeg',
     features: [
       'Technical Workshops',
       'Industry Speaker Sessions',
@@ -26,7 +26,7 @@ const eventTypes = [
     format: 'In-person & Streamed',
     frequency: 'Yearly',
     duration: '1 Full Day',
-    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80',
+    image: '/images/WhatsApp Image 2025-02-27 at 20.51.59.jpeg',
     features: [
       'Keynote Speakers',
       'Panel Discussions',
@@ -51,6 +51,9 @@ const itemVariants = {
     opacity: 1,
   },
 };
+
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
 
 export default function Events() {
   return (
@@ -188,7 +191,9 @@ export default function Events() {
 
                 <div className="mt-6">
                   <a
-                    href="#join"
+                    href={WHATSAPP_GROUP_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center px-6 py-3 rounded-xl text-white bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
                   >
                     Register Interest

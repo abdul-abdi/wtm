@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
+
 const navigation = [
   { name: 'Home', href: '/' },
   { 
@@ -105,10 +108,7 @@ export default function Header() {
 
   const handleJoinClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const joinSection = document.getElementById('contact');
-    if (joinSection) {
-      joinSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.open(WHATSAPP_GROUP_LINK, '_blank');
     setIsMobileMenuOpen(false);
   };
 
@@ -228,11 +228,13 @@ export default function Header() {
               </div>
             ))}
             <Link
-              href="#contact"
+              href={WHATSAPP_GROUP_LINK}
               onClick={handleJoinClick}
               className="ml-4 px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 
                 text-white bg-[#00A9E0] hover:bg-[#0098CC] shadow-lg shadow-[#00A9E0]/20 hover:shadow-[#00A9E0]/30 
                 transform hover:scale-[1.02] active:scale-[0.98]"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Join Now
             </Link>
@@ -325,13 +327,15 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="pt-2 px-4">
-                  <Link
-                    href="#contact"
+                  <a
+                    href={WHATSAPP_GROUP_LINK}
                     onClick={handleJoinClick}
                     className="block w-full px-6 py-3 text-center font-semibold text-white bg-[#00A9E0] hover:bg-[#0098CC] rounded-xl transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Join Now
-                  </Link>
+                  </a>
                 </div>
               </motion.div>
             </motion.div>

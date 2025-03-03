@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const programs = [
   {
@@ -10,7 +9,7 @@ const programs = [
     title: 'Leadership Development',
     description:
       'Comprehensive leadership training program designed to empower women in technology with the skills and confidence to lead in the tech industry.',
-    image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80',
+    image: '/images/IMG_9656 (1).jpg',
     features: [
       'Executive Mentorship Program',
       'Leadership Skills Workshops',
@@ -31,7 +30,7 @@ const programs = [
     title: 'Code & Create',
     description:
       'Hands-on technical training program focusing on practical coding skills and real-world project development.',
-    image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&q=80',
+    image: '/images/IMG_9650 (1).jpg',
     features: [
       'Full-Stack Development',
       'Mobile App Development',
@@ -52,7 +51,7 @@ const programs = [
     title: 'Mentorship Program',
     description:
       'Structured mentorship program connecting aspiring women technologists with experienced professionals in their field of interest.',
-    image: 'https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?auto=format&fit=crop&q=80',
+    image: '/images/IMG_9639 (1).jpg',
     features: [
       'Career Guidance',
       'Technical Skill Development',
@@ -87,6 +86,9 @@ const itemVariants = {
     opacity: 1,
   },
 };
+
+// WhatsApp group link
+const WHATSAPP_GROUP_LINK = 'https://chat.whatsapp.com/KFEwbCxORx10GOFM55Vvzz';
 
 export default function Programs() {
   return (
@@ -235,8 +237,10 @@ export default function Programs() {
                     <div className="mt-8">
                       <div className="relative inline-block group">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#00A9E0] to-[#00BFB3] rounded-xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
-                        <Link
-                          href="#join"
+                        <a
+                          href={WHATSAPP_GROUP_LINK}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className={`relative inline-flex items-center px-8 py-4 rounded-xl text-white bg-gradient-to-r ${program.gradient} hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02]`}
                         >
                           Join Program
@@ -251,7 +255,7 @@ export default function Programs() {
                           >
                             <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
                           </svg>
-                        </Link>
+                        </a>
                       </div>
                     </div>
                   </div>
