@@ -68,42 +68,54 @@ export default function Header() {
   const handleMenuClick = (itemName: string, href: string, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
     
+    // If the item has a submenu, toggle it without navigating
+    const menuItem = navigation.find(item => item.name === itemName);
+    const hasSubmenu = menuItem && menuItem.submenu;
+    
+    if (hasSubmenu) {
+      // Just toggle the submenu for items with submenus
+      setActiveSubmenu(activeSubmenu === itemName ? null : itemName);
+    } else {
+      // For items without submenus, navigate directly
+      navigateToSection(href);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Helper function to handle navigation to sections
+  const navigateToSection = (href: string) => {
     if (href === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      const sectionId = href.split('#')[1];
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+      const sectionIds = href.split('#').filter(Boolean);
+      
+      if (sectionIds.length > 0) {
+        const mainSection = document.getElementById(sectionIds[0]);
+        if (mainSection) {
+          mainSection.scrollIntoView({ behavior: 'smooth' });
+          
+          if (sectionIds.length > 1) {
+            setTimeout(() => {
+              const subSection = document.getElementById(sectionIds[1]);
+              if (subSection) {
+                subSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 500);
+          }
+        }
       }
     }
-
-    setActiveSubmenu(activeSubmenu === itemName ? null : itemName);
-    setIsMobileMenuOpen(false);
   };
 
   const handleSubmenuClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    
+    // Close menus
     setActiveSubmenu(null);
     setIsMobileMenuOpen(false);
-
-    const sectionIds = href.split('#').filter(Boolean);
     
-    if (sectionIds.length > 0) {
-      const mainSection = document.getElementById(sectionIds[0]);
-      if (mainSection) {
-        mainSection.scrollIntoView({ behavior: 'smooth' });
-        
-        if (sectionIds[1]) {
-          setTimeout(() => {
-            const subSection = document.getElementById(sectionIds[1]);
-            if (subSection) {
-              subSection.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 500);
-        }
-      }
-    }
+    // Navigate to the section
+    navigateToSection(href);
   };
 
   const handleJoinClick = (e: React.MouseEvent) => {
@@ -170,7 +182,15 @@ export default function Header() {
                 }}
               >
                 <button
-                  onClick={(e) => handleMenuClick(item.name, item.href, e)}
+                  onClick={(e) => {
+                    if (item.submenu) {
+                      // If it has a submenu, just toggle the submenu
+                      setActiveSubmenu(activeSubmenu === item.name ? null : item.name);
+                    } else {
+                      // If no submenu, navigate directly
+                      handleMenuClick(item.name, item.href, e as React.MouseEvent);
+                    }
+                  }}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus-ring flex items-center space-x-1 group text-gray-600 hover:text-[#00A9E0] ${
                     activeSubmenu === item.name ? 'text-[#00A9E0]' : ''
                   }`}
@@ -281,7 +301,15 @@ export default function Header() {
                 {navigation.map((item) => (
                   <div key={item.name} className="py-2">
                     <button
-                      onClick={(e) => handleMenuClick(item.name, item.href, e)}
+                      onClick={(e) => {
+                        if (item.submenu) {
+                          // If it has a submenu, just toggle the submenu
+                          setActiveSubmenu(activeSubmenu === item.name ? null : item.name);
+                        } else {
+                          // If no submenu, navigate directly
+                          handleMenuClick(item.name, item.href, e as React.MouseEvent);
+                        }
+                      }}
                       className="w-full flex items-center justify-between px-4 py-2 text-base font-medium text-gray-600 hover:text-[#00A9E0] rounded-lg"
                     >
                       <span>{item.name}</span>

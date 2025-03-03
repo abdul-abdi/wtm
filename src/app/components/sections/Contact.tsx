@@ -285,7 +285,7 @@ export default function Contact() {
                   <div className="ml-4">
                     <p className="text-lg font-semibold">Email</p>
                     <p className="mt-1 text-white/80">
-                      contact@womentechmakers.com
+                      info@zetech.ac.ke
                     </p>
                   </div>
                 </motion.div>
@@ -308,7 +308,7 @@ export default function Contact() {
                   </div>
                   <div className="ml-4">
                     <p className="text-lg font-semibold">Phone</p>
-                    <p className="mt-1 text-white/80">+1 (555) 123-4567</p>
+                    <p className="mt-1 text-white/80">+254 799 794404</p>
                   </div>
                 </motion.div>
               </div>
